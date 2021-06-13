@@ -33,7 +33,7 @@
 
   async function start() {
     const worker = await createDbWorker([config], workerUrl.toString(), wasmUrl.toString());
-    const result = await worker.db.exec(`select * from documents where title = ?`, ['10 years']);
+    const result = await worker.db.exec(`select * from documents where title = ?`, ['10 Years']);
     console.log(result);
     console.log('started');
   }
