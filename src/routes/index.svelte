@@ -1,5 +1,5 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>Title: {title}</p>
+<p>Description: {description}</p>
 
 <script>
   // https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/
@@ -15,6 +15,9 @@
   const workerUrl = 'sqlite.worker.js';
 
   console.log('starting')
+
+  let title = 'loading';
+  let description = 'loading';
 
   // init().then((exports) => {
   //   exports.test()
@@ -33,7 +36,10 @@
 
   async function start() {
     const worker = await createDbWorker([config], workerUrl.toString(), wasmUrl.toString());
-    const result = await worker.db.exec(`select * from documents where title = ?`, ['10 Years']);
+    const result = await worker.db.exec(`select title, description from documents where title = ?`, ['10 Years']);
+
+
+    [title, description] = result[0].values[0]
     console.log(result);
     console.log('started');
   }
