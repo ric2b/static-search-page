@@ -10,6 +10,9 @@ const config = {
         // files: {
         //     serviceWorker: 'node_modules/sql.js-httpvfs/dist/sqlite.worker.js',
         // },
+        paths: {
+            base: '/static-search-page',
+        },
 	},
 };
 
